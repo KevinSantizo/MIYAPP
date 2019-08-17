@@ -1,0 +1,85 @@
+{% extends "sport/base.html" %}
+{% block content %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="body">
+    <header id="header">
+	<div class="inner">
+			<a class="logo">
+                {% load static %}
+				<span class="symbol"><img src="{% static 'imagess/ball.svg' %}" alt="" /></span><span class="title">Sport Center</span>
+			</a>
+			<nav>
+				<ul>
+					<li><a href="#menu">Menu</a></li>
+				</ul>
+			</nav>
+
+	</div>
+</header>
+
+<nav id="menu">
+	<h2>Menu</h2>
+	<ul>
+		<li><a href="{% url 'sport:page' customer.pk %}">Inicio</a></li>
+		<li><a href="generic.html">Sobre Nosotros</a></li>
+		<li><a href="generic.html">Mi Perfil</a></li>
+		<li><a href="elements.html">Elements</a></li>
+		<li><a href="">Cerrar Sesión</a></li>
+	</ul>
+</nav>
+    <h1>Reservar</h1>
+<form action="{% url 'sport:add-new-reservation' %}" method="POST">
+        {% csrf_token %}
+        <p>
+        <div class="form-group">
+            <label>Cliente: {{ customer.first_name}} {{ customer.last_name }}</label>
+                {% if customer %}
+            <input type="hidden" name="customer" class="form-control" value="{{ customer.id }}" readonly>
+                {% endif %}
+            </div>
+        </p>
+        <p>
+        <div class="form-group">
+            <label>Company:</label>
+            <select class="form-control input" name="company">
+                {% for company in companies %}
+                <option value="{{ company.id }}">{{ company }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        </p>
+
+        <p>
+        <div class="form-group">
+            <label>Date to reserve</label>
+            <input type="date" class="form-control input"  name="schedule_date" required>
+        </div>
+        </p>
+        <p>
+        <div class="form-group">
+            <label>Schedule</label>
+            <input type="time" class="form-control input"  name="schedule_time" required>
+        </div>
+        </p>
+        <p>
+        <div class="form-group">
+            <label>Field</label>
+            <select class="form-control input" name="field">
+                {% for field in fields %}
+                <option value="{{ field.id }}">{{ field }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        </p>
+        <button type="submit" class="btn btn-outline-success btn-lg">Reserve</button>
+    </form>
+</div>
+</body>
+</html>
+{% endblock %}

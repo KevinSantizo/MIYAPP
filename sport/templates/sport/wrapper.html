@@ -1,0 +1,28 @@
+{% extends "users/base.html" %}
+{% block content %}
+{% load static %}
+<header id="header">
+	<div class="inner">
+			<a class="logo">
+				<span class="symbol"><img src="{% static 'imagess/ball.svg' %}" alt="" /></span><span class="title">Sport <Center></Center></span>
+			</a>
+			<nav>
+				<ul>
+					<li><a href="#menu">Menu</a></li>
+				</ul>
+			</nav>
+
+	</div>
+</header>
+
+<!-- Menu -->
+<nav id="menu">
+	<h2>Menu</h2>
+	<ul>
+		<li><a href="{% url 'sport:page' customer %}">Inicio</a></li>
+		<li><a href="generic.html">Mi Perfil</a></li>
+		<li><a href="elements.html">Elements</a></li>
+		<li><a href="">Cerrar Sesión</a></li>
+	</ul>
+</nav>
+{% endblock %}

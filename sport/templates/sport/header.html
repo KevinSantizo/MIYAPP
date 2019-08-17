@@ -1,0 +1,17 @@
+{% extends "users/base.html" %}
+{% block content %}
+{% load static %}
+<header id="header">
+    <div class="inner">
+        <a href="{% url 'sport:page' customer.pk %}" class="logo">
+            {% load static %}
+            <span class="symbol"><img src="{% static 'imagess/ball.svg' %}" alt="" /></span><span class="title">Futeca</span>
+        </a>
+        <nav>
+            <ul>
+                <li><a href="#menu">Menu</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+{% endblock %}

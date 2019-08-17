@@ -1,0 +1,14 @@
+{% extends "users/base.html" %}
+{% block content %}
+{% load static %}
+<nav id="menu">
+    <h2>Menu</h2>
+    <ul>
+        <li><a href="{% url 'sport:page' customer.pk %}">Inicio</a></li>
+        <li><a href="generic.html">Sobre Nosotros</a></li>
+        <li><a href="generic.html">Consequat dolor</a></li>
+        <li><a href="elements.html">Elements</a></li>
+        <li><a href="">Cerrar Sesión</a></li>
+    </ul>
+</nav>
+{% endblock %}

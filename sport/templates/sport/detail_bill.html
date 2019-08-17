@@ -1,0 +1,45 @@
+{% extends "sport/base.html" %}
+{% block content %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="body">
+    {% include 'sport/header.html' %}
+    {% include 'sport/nav_menu.html' %}
+<h1>Facturación</h1>
+        <p>
+        <div class="form-group">
+            <label>Cliente: {{ customer.first_name}} {{ customer.last_name }}</label>
+                {% if customer %}
+            <input type="hidden" name="customer" class="form-control" value="{{ customer.id }}" readonly>
+                {% endif %}
+            </div>
+        </p>
+        <p>
+        <div class="form-group">
+            <label><h1>Detail Reservation:</h1><br>Field: {{ reservation.field_reserve.type }}</label>
+        </div>
+        </p>
+        <p>
+        <div class="form-group">
+            <label>Date:</label>
+            <input type="time" class="form-control input"  name="schedule_time" required>
+        </div>
+        </p>
+        <p>
+            <label>Field</label>
+            <select class="form-control input" name="field">
+                {% for field in fields %}
+                <option value="{{ field.id }}">{{ field }}</option>
+                {% endfor %}
+            </select>
+        </p>
+        <button type="submit" class="btn btn-outline-success btn-lg">Reserve</button>
+</div>
+</body>
+</html>
+{% endblock %}

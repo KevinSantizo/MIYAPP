@@ -1,0 +1,87 @@
+{% extends "sport/base.html" %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="body">
+    <header id="header">
+	<div class="inner">
+			<a class="logo">
+                {% load static %}
+				<span class="symbol"><img src="{% static 'imagess/ball.svg' %}" alt="" /></span><span class="title">Sport Center</span>
+			</a>
+			<nav>
+				<ul>
+					<li><a href="#menu">Menu</a></li>
+				</ul>
+			</nav>
+
+	</div>
+</header>
+
+<nav id="menu">
+	<h2>Menu</h2>
+	<ul>
+		<li><a href="">Inicio</a></li>
+		<li><a href="generic.html">Sobre Nosotros</a></li>
+		<li><a href="generic.html">Mi Perfil</a></li>
+		<li><a href="elements.html">Elements</a></li>
+		<li><a href="">Cerrar Sesión</a></li>
+	</ul>
+</nav>
+    <h1>Mis Reservaciones </h1>
+ <table class="table table-bordered table-sm">
+     <thead class="thead-dark">
+            <tr>
+                <th>COMPAÑÍA</th>
+                <th>CLIENTE</th>
+                <th>CANCHA - TIPO DE CANCHA</th>
+                <th>FECHA RESERVADA</th>
+                <th>HORARIO RESERVADO</th>
+                <th>OPCIONES</th>
+            </tr>
+      </thead>
+            {% for res in reservation %}
+            <tr>
+                <td>{{ res.company }}</td>
+                <td>{{ res.customer_reserve}}</td>
+                <td>{{ res.field_reserve}}</td>
+                <td>{{ res.schedule_date }}</td>
+                <td>{{ res.schedule_time }}</td>
+                <td>
+                    <a href="{% url 'sport:delete' res.id %}"><button type="button" class="btn btn-danger">Eliminar</button></a>
+                    <a href=""><button type="button" class="btn btn-warning">Editar</button></a>
+                </td>
+            </tr>
+            {% endfor %}
+
+        </table>
+{% if reservation.has_other_pages %}
+  <ul class="pagination">
+    {% if reservation.has_previous %}
+      <li><a href="?page={{ available.previous_page_number }}">&laquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&laquo;</span></li>
+    {% endif %}
+    {% for i in reservation.paginator.page_range %}
+      {% if reservation.number == i %}
+        <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+      {% else %}
+        <li><a href="?page={{ i }}">{{ i }}</a></li>
+      {% endif %}
+    {% endfor %}
+    {% if reservation.has_next %}
+      <li><a href="?page={{ available.next_page_number }}">&raquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&raquo;</span></li>
+    {% endif %}
+  </ul>
+</div>
+</body>
+</html>
+{% endif %}
+
+{% endblock %}
