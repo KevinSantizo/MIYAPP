@@ -1,0 +1,45 @@
+{% extends "sport/base.html" %}
+{% block content %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Compañías</title>
+</head>
+<body>
+	<div id="body">
+		<header id="header">
+		<div class="inner">
+			<a class="logo">
+				{% load static %}
+				<span class="symbol"><img src="{% static 'imagess/ball.svg' %}" alt="" /></span><span class="title">Sport Center</span>
+			</a>
+			<nav>
+				<ul>
+					<li><a href="#menu">Menu</a></li>
+				</ul>
+			</nav>
+		</div>
+	</header>
+	<nav id="menu">
+		<h2>Menu</h2>
+		<ul>
+			<li><a href="{% url 'sport:page' customer.pk %}">Inicio</a></li>
+			<li><a href="{% url 'sport:edit-profile' customer.pk %}">Editar Perfil</a></li>
+			<li><a href="">Cerrar Sesión</a></li>
+		</ul>
+	</nav>
+		<h1>MI PERFIL</h1>
+			<label>Cliente: {{ customer.first_name}} {{ customer.last_name }}</label>
+			<label>Teléfono: {{ customer.phone}}</label>
+			<label>Correo Electrónico: {{ customer.email}}</label>
+			<label>Dirección: {{ customer.address}}</label>
+
+			{% if reservation %}
+				<label>Reservaciones: {{ reservation }}</label>
+			{% endif %}
+	</div>
+</body>
+</html>
+
+{% endblock %}

@@ -51,7 +51,7 @@ class Company(models.Model):
 
 class Reservation(models.Model):
     company = models.ForeignKey(Company, on_delete=models.CASCADE, null=True)
-    customer_reserve = models.ForeignKey(Customer, on_delete=models.CASCADE)
+    customer_reserve = models.ForeignKey(Customer, on_delete=models.CASCADE, related_name='customer_reserve')
     field_reserve = models.ForeignKey(Field, on_delete=models.CASCADE)
     schedule_date = models.DateField(null=True)
     schedule_time = models.TimeField(null=True)

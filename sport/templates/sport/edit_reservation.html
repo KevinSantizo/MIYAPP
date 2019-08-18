@@ -1,0 +1,79 @@
+{% extends "sport/base.html" %}
+{% block content %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="body">
+    <header id="header">
+	<div class="inner">
+			<a class="logo">
+                {% load static %}
+				<span class="symbol"><img src="{% static 'imagess/ball.svg' %}" alt="" /></span><span class="title">Sport Center</span>
+			</a>
+			<nav>
+				<ul>
+					<li><a href="#menu">Menu</a></li>
+				</ul>
+			</nav>
+
+	</div>
+</header>
+
+<nav id="menu">
+	<h2>Menu</h2>
+	<ul>
+		<li><a href="{% url 'sport:show-field' %}">Cancelar</a></li>
+		<li><a href="">Cerrar Sesión</a></li>
+	</ul>
+</nav>
+    <h1>Editar Reservación</h1>
+<form action="{% url 'sport:save-reservation' reservation.pk %}" method="POST">
+        {% csrf_token %}
+        <p>
+        <div class="form-group">
+            <label>Compañía: {{ company.name }} </label>
+                {% if company %}
+            <input type="hidden" name="company" class="form-control" value="{{ company.id }}" readonly>
+                {% endif %}
+        </div>
+        </p>
+        <p>
+        <div class="form-group">
+            <label>Cliente: {{ customer.first_name}} {{ customer.last_name }}</label>
+                {% if customer %}
+            <input type="hidden" name="customer" class="form-control" value="{{ customer.id }}" readonly>
+                {% endif %}
+        </div>
+        </p>
+        <p>
+        <div class="form-group">
+            <label>Cancha: {{ field.type }} {{ field.price }} </label>
+                {% if field %}
+            <input type="hidden" name="field" class="form-control" value="{{ field.id }}" readonly>
+                {% endif %}
+        </div>
+        </p>
+        <p>
+        <div class="form-group">
+            <label>Date to reserve:</label>
+            <input type="date" class="form-control input"  name="schedule_date"  value="{{ field.schedule_date }}" required>
+        </div>
+        </p>
+        <p>
+        <div class="form-group">
+            <label>Schedule:</label>
+            <input type="time" class="form-control input"  name="schedule_time"  value="{{ field.schedule_time }}" required>
+        </div>
+        </p>
+        <p>
+
+        <button type="submit" class="btn btn-outline-success btn-lg">Editar</button>
+    </form>
+</div>
+</body>
+</html>
+{% endblock %}

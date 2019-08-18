@@ -1,0 +1,74 @@
+{% extends "sport/base.html" %}
+{% block content %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="body">
+    <header id="header">
+	<div class="inner">
+			<a class="logo">
+                {% load static %}
+				<span class="symbol"><img src="{% static 'imagess/ball.svg' %}" alt="" /></span><span class="title">Sport Center</span>
+			</a>
+			<nav>
+				<ul>
+					<li><a href="#menu">Menu</a></li>
+				</ul>
+			</nav>
+
+	</div>
+</header>
+
+<nav id="menu">
+	<h2>Menu</h2>
+	<ul>
+		<li><a href="{% url 'sport:profile' customer.pk %}">Cancelar</a></li>
+		<li><a href="">Cerrar Sesión</a></li>
+	</ul>
+</nav>
+    <h1>Editar Mi Perfil</h1>
+<form action="{% url 'sport:save-profile' customer.pk %}" method="POST">
+        {% csrf_token %}
+        <p>
+        {% if customer %}
+        <div class="form-group">
+            <label>Nombre:</label>
+            <input type="text" name="first_name" class="form-control" value="{{ customer.first_name }}">
+        </div>
+        </p>
+        <div class="form-group">
+            <label>Apellidos:</label>
+            <input type="text" name="last_name" class="form-control" value="{{ customer.last_name }}">
+        </div>
+        </p>
+        <div class="form-group">
+            <label>Teléfono:</label>
+            <input type="text" name="phone" class="form-control" value="{{ customer.phone }}">
+        </div>
+        </p>
+        <div class="form-group">
+            <label>Correo Electrónico:</label>
+            <input type="text" name="email" class="form-control" value="{{ customer.email }}">
+        </div>
+        </p>
+        <div class="form-group">
+            <label>Dirección:</label>
+            <input type="text" name="address" class="form-control" value="{{ customer.address }}">
+        </div>
+        </p>
+        <div class="form-group">
+            <label>Nombre:</label>
+            <input type="password" name="password" class="form-control" value="{{ customer.password }}">
+        </div>
+        </p>
+        {% endif %}
+        <button type="submit" class="btn btn-outline-success btn-lg">Editar</button>
+    </form>
+</div>
+</body>
+</html>
+{% endblock %}

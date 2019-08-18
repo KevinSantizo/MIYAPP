@@ -1,0 +1,64 @@
+{% extends "sport/base.html" %}
+{% block content %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="body">
+    <header id="header">
+	<div class="inner">
+			<a class="logo">
+                {% load static %}
+				<span class="symbol"><img src="{% static 'imagess/ball.svg' %}" alt="" /></span><span class="title">Sport Center</span>
+			</a>
+			<nav>
+				<ul>
+					<li><a href="#menu">Menu</a></li>
+				</ul>
+			</nav>
+
+	</div>
+</header>
+
+<nav id="menu">
+	<h2>Menu</h2>
+	<ul>
+		<li><a href="{% url 'sport:show-company' %}">Cancelar</a></li>
+		<li><a href="">Cerrar Sesión</a></li>
+	</ul>
+</nav>
+    <h1>Editar Centro Deportivo</h1>
+<form action="{% url 'sport:save-company' company.pk %}" method="POST">
+        {% csrf_token %}
+        <p>
+        {% if company %}
+        <div class="form-group">
+            <label>Nombre:</label>
+            <input type="text" name="name" class="form-control" value="{{ company.name }}">
+        </div>
+        </p>
+        <div class="form-group">
+            <label>Dirección</label>
+            <input type="text" name="address" class="form-control" value="{{ company.address }}">
+        </div>
+        </p>
+        <div class="form-group">
+            <label>Teléfono:</label>
+            <input type="text" name="phone" class="form-control" value="{{ company.phone }}">
+        </div>
+        </p>
+        <div class="form-group">
+            <label>Correo Electrónico:</label>
+            <input type="text" name="email" class="form-control" value="{{ company.email }}">
+        </div>
+        </p>
+        {% endif %}
+        <button type="submit" class="btn btn-outline-success btn-lg">Editar</button>
+    </form>
+</div>
+</body>
+</html>
+{% endblock %}

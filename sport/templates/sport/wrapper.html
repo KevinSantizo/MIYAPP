@@ -4,7 +4,7 @@
 <header id="header">
 	<div class="inner">
 			<a class="logo">
-				<span class="symbol"><img src="{% static 'imagess/ball.svg' %}" alt="" /></span><span class="title">Sport <Center></Center></span>
+				<span class="symbol"><img src="{% static 'imagess/ball.svg' %}" alt="" /></span><span class="title">Sport Center</span>
 			</a>
 			<nav>
 				<ul>
@@ -20,9 +20,9 @@
 	<h2>Menu</h2>
 	<ul>
 		<li><a href="{% url 'sport:page' customer %}">Inicio</a></li>
-		<li><a href="generic.html">Mi Perfil</a></li>
-		<li><a href="elements.html">Elements</a></li>
-		<li><a href="">Cerrar Sesión</a></li>
+		<li><a href="{% url 'sport:profile' customer %}">Mi Perfil</a></li>
+		<li><a href="{% url 'sport:show-company' %}">Centros Deortivos</a></li>
+		<li><a href="{% url 'sport:show-field' %}">Canchas</a></li>
 	</ul>
 </nav>
 {% endblock %}

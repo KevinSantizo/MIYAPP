@@ -25,54 +25,49 @@
 <nav id="menu">
 	<h2>Menu</h2>
 	<ul>
-		<li><a href="">Inicio</a></li>
-		<li><a href="generic.html">Sobre Nosotros</a></li>
-		<li><a href="elements.html">Elements</a></li>
-		<li><a href="">Cerrar Sesión</a></li>
+		<li><a href="{% url 'sport:new-field' %}">Agregar Cancha</a></li>
 	</ul>
 </nav>
-    <h1>Mis Reservaciones </h1>
- <table class="table table-bordered table-sm">
-     <thead class="thead-dark">
+    <h1>Canchas</h1>
+ <table class="table table-bordered table-sm tablesita">
+     <thead class="thead-dark thr">
             <tr>
                 <th>COMPAÑÍA</th>
-                <th>CLIENTE</th>
+                <th>ESTADO</th>
                 <th>CANCHA - TIPO DE CANCHA</th>
-                <th>FECHA RESERVADA</th>
-                <th>HORARIO RESERVADO</th>
+                <th>PRECIO</th>
                 <th>OPCIONES</th>
             </tr>
       </thead>
-            {% for res in reservation %}
+            {% for field in field_list %}
             <tr>
-                <td>{{ res.company }}</td>
-                <td>{{ res.customer_reserve}}</td>
-                <td>{{ res.field_reserve}}</td>
-                <td>{{ res.schedule_date }}</td>
-                <td>{{ res.schedule_time }}</td>
+                <td>{{ field.company }}</td>
+                <td>{{ field.status }}</td>
+                <td>{{ field.type }}</td>
+                <td>{{ field.price }}</td>
                 <td>
-                    <a href="{% url 'sport:delete' res.pk %}"><button type="button" class="btn btn-danger">Eliminar</button></a>
-                    <a href="{% url 'sport:edit-reservation' res.pk %}"><button type="button" class="btn btn-warning">Editar</button></a>
+                    <a href="{% url 'sport:delete-field' field.pk %}"><button type="button" class="btn btn-danger">Eliminar</button></a>
+                    <a href="{% url 'sport:edit-field' field.pk %}"><button type="button" class="btn btn-warning">Editar</button></a>
                 </td>
             </tr>
             {% endfor %}
 
         </table>
-{% if reservation.has_other_pages %}
+{% if field_list.has_other_pages %}
   <ul class="pagination">
-    {% if reservation.has_previous %}
+    {% if field_list.has_previous %}
       <li><a href="?page={{ available.previous_page_number }}">&laquo;</a></li>
     {% else %}
       <li class="disabled"><span>&laquo;</span></li>
     {% endif %}
-    {% for i in reservation.paginator.page_range %}
-      {% if reservation.number == i %}
+    {% for i in field_list.paginator.page_range %}
+      {% if field_list.number == i %}
         <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
       {% else %}
         <li><a href="?page={{ i }}">{{ i }}</a></li>
       {% endif %}
     {% endfor %}
-    {% if reservation.has_next %}
+    {% if field_list.has_next %}
       <li><a href="?page={{ available.next_page_number }}">&raquo;</a></li>
     {% else %}
       <li class="disabled"><span>&raquo;</span></li>

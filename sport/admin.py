@@ -29,6 +29,10 @@ class ReservationAdmin(admin.ModelAdmin):
     list_display = ('company', 'customer_reserve', 'field_reserve', 'schedule_date', 'schedule_time')
 
 
+
+
+
+
 """
 @admin.register(Field)
 class FieldAdmin(admin.ModelAdmin):

@@ -1,0 +1,66 @@
+{% extends "sport/base.html" %}
+{% block content %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="body">
+    <header id="header">
+	<div class="inner">
+			<a class="logo">
+                {% load static %}
+				<span class="symbol"><img src="{% static 'imagess/ball.svg' %}" alt="" /></span><span class="title">Sport Center</span>
+			</a>
+			<nav>
+				<ul>
+					<li><a href="#menu">Menu</a></li>
+				</ul>
+			</nav>
+
+	</div>
+</header>
+
+<nav id="menu">
+	<h2>Menu</h2>
+	<ul>
+		<li><a href="{% url 'sport:show-field' %}">Cancelar</a></li>
+		<li><a href="">Cerrar Sesión</a></li>
+	</ul>
+</nav>
+    <h1>Reservar</h1>
+<form action="{% url 'sport:save-field' field.pk %}" method="POST">
+        {% csrf_token %}
+        <p>
+        <div class="form-group">
+            <label>Status</label>
+            <select class="form-control input" name="status">
+                <option value="R" {% if field.status == 'R' %} selected="selected" {% endif %}>Reserved</option>
+                <option value="A" {% if field.status == 'A' %} selected="selected" {% endif %}>Available</option>
+            </select>
+        </div>
+        </p>
+      <p>
+        <div class="form-group">
+            <label>Type of Field</label>
+            <select class="form-control input" name="type">
+                <option value="1" {% if field.type == '1' %} selected="selected" {% endif %}>5 Players</option>
+                <option value="2" {% if field.type == '2' %} selected="selected" {% endif %}>7 Players</option>
+                <option value="3" {% if field.type == '3' %} selected="selected" {% endif %}>11 Players</option>
+            </select>
+        </div>
+        </p>
+        <p>
+        <div class="form-group">
+            <label>Price</label>
+            <input type="text" class="form-control inputs"  name="price"  value="{{ field.price }}" required>
+        </div>
+        </p>
+        <button type="submit" class="btn btn-outline-success btn-lg">Editar</button>
+    </form>
+</div>
+</body>
+</html>
+{% endblock %}
