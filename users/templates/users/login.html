@@ -14,7 +14,7 @@
 					</span>
 				</div>
 
-				<form class="login100-form validate-form" action="{% url 'users:auth'  %}" method="POST">
+				<form class="login100-form validate-form" action="{% url 'users:login'  %}" method="POST">
 					{% csrf_token %}
 					<div class="wrap-input100 validate-input m-b-26" data-validate="Email is required">
 						<span class="label-input100">Email</span>

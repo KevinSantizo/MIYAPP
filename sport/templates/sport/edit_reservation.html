@@ -26,7 +26,7 @@
 <nav id="menu">
 	<h2>Menu</h2>
 	<ul>
-		<li><a href="{% url 'sport:show-field' %}">Cancelar</a></li>
+		<li><a href="">Cancelar</a></li>
 		<li><a href="">Cerrar Sesión</a></li>
 	</ul>
 </nav>
@@ -35,43 +35,47 @@
         {% csrf_token %}
         <p>
         <div class="form-group">
-            <label>Compañía: {{ company.name }} </label>
-                {% if company %}
-            <input type="hidden" name="company" class="form-control" value="{{ company.id }}" readonly>
+            <label>Compañía: {{ reservation.company }} </label>
+                {% if reservation.company %}
+            <input type="hidden" name="company" class="form-control" value="{{ reservation.company.id }}" readonly>
                 {% endif %}
         </div>
         </p>
         <p>
         <div class="form-group">
-            <label>Cliente: {{ customer.first_name}} {{ customer.last_name }}</label>
-                {% if customer %}
-            <input type="hidden" name="customer" class="form-control" value="{{ customer.id }}" readonly>
+            <label>Cliente: {{ reservation.customer_reserve.first_name }} {{ reservation.customer_reserve.last_name }}</label>
+                {% if reservation.customer_reserve %}
+            <input type="hidden" name="customer" class="form-control" value="{{ reservation.customer_reserve.id }}" readonly>
                 {% endif %}
         </div>
         </p>
         <p>
         <div class="form-group">
-            <label>Cancha: {{ field.type }} {{ field.price }} </label>
-                {% if field %}
-            <input type="hidden" name="field" class="form-control" value="{{ field.id }}" readonly>
+            <label>Tipo de Cancha: {{ reservation.field_reserve.type }}</label>
+        <label>Precio: {{ reservation.field_reserve.price }}</label>
+            {% if reservation.field_reserve %}
+            <input type="hidden" name="field" class="form-control" value="{{ reservation.field_reserve.id }}" readonly>
                 {% endif %}
+        {{ reservation }}
         </div>
         </p>
         <p>
         <div class="form-group">
             <label>Date to reserve:</label>
-            <input type="date" class="form-control input"  name="schedule_date"  value="{{ field.schedule_date }}" required>
+    {{ reservation.schedule_time }}
+                {% if reservation.schedule_date %}
+            <input type="text" class="form-control input"  name="schedule_date"  value="{{ reservation.schedule_date }}" required>
+                {% endif %}
         </div>
         </p>
         <p>
         <div class="form-group">
             <label>Schedule:</label>
-            <input type="time" class="form-control input"  name="schedule_time"  value="{{ field.schedule_time }}" required>
+            <input type="time" class="form-control input"  name="schedule_time"  value="{{ reservation.schedule_time }}" required>
         </div>
         </p>
-        <p>
-
-        <button type="submit" class="btn btn-outline-success btn-lg">Editar</button>
+        <button type="submit" class="btn btn-warning btn-lg">Editar</button>
+        <a href=""><button type="submit" class="btn btn-danger btn-lg">Cancelar</button></a>
     </form>
 </div>
 </body>

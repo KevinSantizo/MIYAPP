@@ -31,7 +31,7 @@
 	</ul>
 </nav>
     <h1>Editar Mi Perfil</h1>
-<form action="{% url 'sport:save-profile' customer.pk %}" method="POST">
+<form action="{% url 'sport:edit-profile' customer.pk %}" method="POST">
         {% csrf_token %}
         <p>
         {% if customer %}
@@ -61,12 +61,13 @@
         </div>
         </p>
         <div class="form-group">
-            <label>Nombre:</label>
+            <label>Password:</label>
             <input type="password" name="password" class="form-control" value="{{ customer.password }}">
         </div>
         </p>
         {% endif %}
-        <button type="submit" class="btn btn-outline-success btn-lg">Editar</button>
+        <button type="submit" class="btn btn-warning btn-lg">Editar</button>
+        <a href=""><button type="submit" class="btn btn-danger btn-lg">Cancelar</button>
     </form>
 </div>
 </body>

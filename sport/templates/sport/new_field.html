@@ -30,7 +30,7 @@
 	</ul>
 </nav>
     <h1>AÑADIR CANCHA</h1>
-<form action="{% url 'sport:add-new-field' %}" method="POST">
+<form action="{% url 'sport:new-field' %}" method="POST">
         {% csrf_token %}
         <p>
         <div class="form-group">

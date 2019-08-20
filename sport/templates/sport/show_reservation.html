@@ -26,7 +26,7 @@
 	<h2>Menu</h2>
 	<ul>
 		<li><a href="">Inicio</a></li>
-		<li><a href="generic.html">Sobre Nosotros</a></li>
+		<li><a href="">Agregar Nueva Reservación</a></li>
 		<li><a href="elements.html">Elements</a></li>
 		<li><a href="">Cerrar Sesión</a></li>
 	</ul>
@@ -43,6 +43,7 @@
                 <th>OPCIONES</th>
             </tr>
       </thead>
+     {% if reservation %}
             {% for res in reservation %}
             <tr>
                 <td>{{ res.company }}</td>
@@ -56,7 +57,10 @@
                 </td>
             </tr>
             {% endfor %}
-
+            {% else %}
+     {% load static %}
+     <label style="color: red;">No tienes Reservaciones! <a href="">haz una reservación aquí</a></label>
+            {% endif %}
         </table>
 {% if reservation.has_other_pages %}
   <ul class="pagination">

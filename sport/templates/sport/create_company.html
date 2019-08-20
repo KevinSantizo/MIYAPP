@@ -31,7 +31,7 @@
 	</ul>
 </nav>
     <h1>Agregar Centro Deportivo</h1>
-<form action="{% url 'sport:add-new-company' %}" method="POST">
+<form action="{% url 'sport:new-company' %}" method="POST">
         {% csrf_token %}
         <p>
         <div class="form-group">

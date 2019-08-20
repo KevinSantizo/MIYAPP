@@ -1,6 +1,7 @@
 from django.db import models
 from users.models import Customer
 from django.utils import timezone
+from django.urls import reverse
 import uuid
 
 
@@ -59,6 +60,10 @@ class Reservation(models.Model):
     def __str__(self):
         return 'Company: ' + self.company.name + 'Address:' + self.company.address + 'Customer: ' + self.customer_reserve.first_name + ' --- Type Field: --- ' + self.field_reserve.type + ' --- Date Reserved: --- ' \
                + str(self.schedule_date) + ' Schedule Time ' + str(self.schedule_time) + ' --- Price: --- ' + self.field_reserve.price
+
+    def get_absolute_url(self):
+        """Returns the url to access a detail record for this book."""
+        return reverse('sport:page', args=[str(self.pk)])
 
 
 class Bill(models.Model):

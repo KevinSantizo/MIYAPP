@@ -30,8 +30,8 @@
 		<li><a href="">Cerrar Sesión</a></li>
 	</ul>
 </nav>
-    <h1>Reservar</h1>
-<form action="{% url 'sport:save-field' field.pk %}" method="POST">
+    <h1>Editar Cancha</h1>
+<form action="{% url 'sport:edit-field' field.pk %}" method="POST">
         {% csrf_token %}
         <p>
         <div class="form-group">
@@ -58,7 +58,8 @@
             <input type="text" class="form-control inputs"  name="price"  value="{{ field.price }}" required>
         </div>
         </p>
-        <button type="submit" class="btn btn-outline-success btn-lg">Editar</button>
+        <button type="submit" class="btn btn-warning btn-lg">Editar</button>
+        <a href=""><button type="submit" class="btn btn-danger btn-lg">Cancelar</button></a>
     </form>
 </div>
 </body>

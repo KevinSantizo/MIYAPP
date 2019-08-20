@@ -31,7 +31,7 @@
 	</ul>
 </nav>
     <h1>Editar Centro Deportivo</h1>
-<form action="{% url 'sport:save-company' company.pk %}" method="POST">
+<form action="{% url 'sport:edit-company' company.pk %}" method="POST">
         {% csrf_token %}
         <p>
         {% if company %}
@@ -56,7 +56,8 @@
         </div>
         </p>
         {% endif %}
-        <button type="submit" class="btn btn-outline-success btn-lg">Editar</button>
+        <button type="submit" class="btn btn-warning btn-lg">Editar</button>
+        <a href=""><button type="submit" class="btn btn-danger btn-lg">Cancelar</button></a>
     </form>
 </div>
 </body>

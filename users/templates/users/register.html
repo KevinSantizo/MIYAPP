@@ -14,7 +14,7 @@
 					</span>
 				</div>
 
-				<form class="login100-form validate-form" action="{% url 'users:save-customer'  %}" method="POST">
+				<form class="login100-form validate-form" action="{% url 'users:register'  %}" method="POST">
 					{% csrf_token %}
 					<div class="wrap-input100 validate-input m-b-26" data-validate="Nombre requerido">
 						<span class="label-input100">Nombres</span>

@@ -34,7 +34,7 @@
 	</ul>
 </nav>
     <h1>Reservar</h1>
-<form action="{% url 'sport:add-new-reservation' %}" method="POST">
+<form action="{% url 'sport:new-reservation' customer.pk %}" method="POST">
         {% csrf_token %}
         <p>
         <div class="form-group">
@@ -78,7 +78,7 @@
             </select>
         </div>
         </p>
-        <button type="submit" class="btn btn-outline-success btn-lg">Reserve</button>
+        <button type="submit" class="btn btn-success btn-lg">Reserve</button>
     </form>
 </div>
 </body>
