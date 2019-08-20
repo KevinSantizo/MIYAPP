@@ -52,7 +52,7 @@ def show_reservation(request, customer_pk):
     except EmptyPage:
         reservation = reservation_customer
 
-    return render(request, template, {'reservation': reservation}, {'paginator': paginator})
+    return render(request, template, {'reservation': reservation, 'customer_pk': customer_pk}, {'paginator': paginator}) # FALTABA AGREGAR EL CUSTOMERPK POR ALGUNA RAZON NO IBA DENTRO DEL RESERVATION
 
 
 def edit_reservation(request, reservation_pk):

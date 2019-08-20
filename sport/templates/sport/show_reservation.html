@@ -25,8 +25,8 @@
 <nav id="menu">
 	<h2>Menu</h2>
 	<ul>
-		<li><a href="">Inicio</a></li>
-		<li><a href="">Agregar Nueva Reservación</a></li>
+		<li><a href="{% url 'sport:page' customer_pk %}">Inicio</a></li>
+    <li><a href="{% url 'sport:new-reservation' customer_pk %}">Agregar Nueva Reservación</a></li>
 		<li><a href="elements.html">Elements</a></li>
 		<li><a href="">Cerrar Sesión</a></li>
 	</ul>
@@ -59,7 +59,7 @@
             {% endfor %}
             {% else %}
      {% load static %}
-     <label style="color: red;">No tienes Reservaciones! <a href="">haz una reservación aquí</a></label>
+     <label style="color: red;">No tienes Reservaciones! <a href="{% url 'sport:new-reservation' customer_pk %}">haz una reservación aquí</a></label>
             {% endif %}
         </table>
 {% if reservation.has_other_pages %}
