@@ -26,8 +26,9 @@
 <nav id="menu">
 	<h2>Menu</h2>
 	<ul>
+        <li><a href="{% url 'sport:page' customer.pk %}">Inicio</a></li>
 		<li><a href="{% url 'sport:profile' customer.pk %}">Cancelar</a></li>
-		<li><a href="">Cerrar Sesión</a></li>
+		<li><a href="{% url 'users:login' %}">Cerrar Sesión</a></li>
 	</ul>
 </nav>
     <h1>Editar Mi Perfil</h1>
@@ -37,32 +38,32 @@
         {% if customer %}
         <div class="form-group">
             <label>Nombre:</label>
-            <input type="text" name="first_name" class="form-control" value="{{ customer.first_name }}">
+            <input type="text" name="first_name" class="form-control inputs" value="{{ customer.first_name }}">
         </div>
         </p>
         <div class="form-group">
             <label>Apellidos:</label>
-            <input type="text" name="last_name" class="form-control" value="{{ customer.last_name }}">
+            <input type="text" name="last_name" class="form-control inputs" value="{{ customer.last_name }}">
         </div>
         </p>
         <div class="form-group">
             <label>Teléfono:</label>
-            <input type="text" name="phone" class="form-control" value="{{ customer.phone }}">
+            <input type="text" name="phone" class="form-control inputs" value="{{ customer.phone }}">
         </div>
         </p>
         <div class="form-group">
             <label>Correo Electrónico:</label>
-            <input type="text" name="email" class="form-control" value="{{ customer.email }}">
+            <input type="text" name="email" class="form-control inputs" value="{{ customer.email }}">
         </div>
         </p>
         <div class="form-group">
             <label>Dirección:</label>
-            <input type="text" name="address" class="form-control" value="{{ customer.address }}">
+            <input type="text" name="address" class="form-control inputs" value="{{ customer.address }}">
         </div>
         </p>
         <div class="form-group">
             <label>Password:</label>
-            <input type="password" name="password" class="form-control" value="{{ customer.password }}">
+            <input type="password" name="password" class="form-control inputs" value="{{ customer.password }}">
         </div>
         </p>
         {% endif %}

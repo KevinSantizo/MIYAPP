@@ -20,13 +20,13 @@ def create_reservation(request, customer_pk):
     if request.method == 'POST':
         post_customer = Customer.objects.get(pk=request.POST['customer'])
         post_field = Field.objects.get(pk=request.POST['field'])
-        post_company=Company.objects.get(pk=request.POST['company'])
+        post_company = Company.objects.get(pk=request.POST['company'])
         new_reservation_customer=Reservation(
             schedule_date=request.POST['schedule_date'],
             schedule_time=request.POST['schedule_time'],
             customer_reserve=post_customer,
             field_reserve=post_field,
-            company=post_company,
+            company_reserve=post_company,
         )
         new_reservation_customer.save()
         return HttpResponseRedirect(reverse('sport:show-reservation', kwargs={'customer_pk': request.POST['customer']}))
@@ -57,8 +57,14 @@ def show_reservation(request, customer_pk):
 
 def edit_reservation(request, reservation_pk):
     template = 'sport/edit_reservation.html'
+    company_reserve = Reservation.objects.get(pk=reservation_pk)
+    field_reserve = Reservation.objects.get(pk=reservation_pk)
     context = {
-        'reservation': Reservation.objects.get(pk=reservation_pk)
+        'reservation': Reservation.objects.get(pk=reservation_pk),
+        'companies': Company.objects.all(),
+        'fields': Field.objects.all(),
+        'company_instance': company_reserve,
+        'field_instance': field_reserve,
     }
 
     return render(request, template, context)
@@ -66,9 +72,13 @@ def edit_reservation(request, reservation_pk):
 
 def confirm_edit_reservation(request, reservation_pk):
     if request.method == 'POST':
+        post_company = Company.objects.get(pk=request.POST['company'])
+        post_field = Field.objects.get(pk=request.POST['field'])
         updated_reservation = Reservation.objects.get(pk=reservation_pk)
         updated_reservation.schedule_date = request.POST['schedule_date']
         updated_reservation.schedule_time = request.POST['schedule_time']
+        updated_reservation.company_reserve = post_company
+        updated_reservation.field_reserve = post_field
         updated_reservation.save()
 
         return HttpResponseRedirect(reverse('sport:show-reservation', kwargs={'customer_pk': updated_reservation.customer_reserve.id}))

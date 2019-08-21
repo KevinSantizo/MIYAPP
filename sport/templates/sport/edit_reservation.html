@@ -26,21 +26,13 @@
 <nav id="menu">
 	<h2>Menu</h2>
 	<ul>
-		<li><a href="{% url 'sport:page' reservation.customer_reserve.pk %}">Cancelar</a></li>
-		<li><a href="">Cerrar Sesión</a></li>
+		<li><a href="{% url 'sport:page' reservation.customer_reserve.pk %}">Inicio</a></li>
+		<li><a href="{% url 'sport:show-reservation' reservation.customer_reserve.pk %}">Cancelar</a></li>
 	</ul>
 </nav>
     <h1>Editar Reservación</h1>
 <form action="{% url 'sport:save-reservation' reservation.pk %}" method="POST">
         {% csrf_token %}
-        <p>
-        <div class="form-group">
-            <label>Compañía: {{ reservation.company }} </label>
-                {% if reservation.company %}
-            <input type="hidden" name="company" class="form-control" value="{{ reservation.company.id }}" readonly>
-                {% endif %}
-        </div>
-        </p>
         <p>
         <div class="form-group">
             <label>Cliente: {{ reservation.customer_reserve.first_name }} {{ reservation.customer_reserve.last_name }}</label>
@@ -49,33 +41,43 @@
                 {% endif %}
         </div>
         </p>
-        <p>
+            <div class="form-group">
+            <label>Company:</label>
+            <select class="form-control input" name="company">
+                {% for company in companies %}
+                <option value="{{ company.id }}" {% if company.id ==  company_instance.company_reserve.id  %} selected="selected" {% endif %}>{{ company.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        </p>
+       <p>
         <div class="form-group">
-            <label>Tipo de Cancha: {{ reservation.field_reserve.type }}</label>
-        <label>Precio: {{ reservation.field_reserve.price }}</label>
-            {% if reservation.field_reserve %}
-            <input type="hidden" name="field" class="form-control" value="{{ reservation.field_reserve.id }}" readonly>
-                {% endif %}
-        {{ reservation }}
+            <label>Field:</label>
+            <select class="form-control input" name="field">
+                {% for field in fields %}
+                <option value="{{ field.id }}" {% if field.id ==  field_instance.field_reserve.id  %} selected="selected" {% endif %}>{{ field }}</option>
+                {% endfor %}
+            </select>
         </div>
         </p>
         <p>
         <div class="form-group">
+        {{ reservation.schedule_date }}
+
             <label>Date to reserve:</label>
-    {{ reservation.schedule_time }}
                 {% if reservation.schedule_date %}
-            <input type="text" class="form-control input"  name="schedule_date"  value="{{ reservation.schedule_date }}" required>
+            <input type="date" class="form-control input"  name="schedule_date"  value='{{ reservation.schedule_date|date:"Y-m-d"  }}' required>
                 {% endif %}
         </div>
         </p>
         <p>
         <div class="form-group">
             <label>Schedule:</label>
-            <input type="time" class="form-control input"  name="schedule_time"  value="{{ reservation.schedule_time }}" required>
+            <input type="time" class="form-control input"  name="schedule_time"  value='{{ reservation.schedule_time|time:"H:i" }}' required>
         </div>
         </p>
         <button type="submit" class="btn btn-warning btn-lg">Editar</button>
-        <a href=""><button type="submit" class="btn btn-danger btn-lg">Cancelar</button></a>
+        <a href="{% url 'sport:show-reservation' reservation.customer_reserve.pk %}"><button type="submit" class="btn btn-danger btn-lg">Cancelar</button></a>
     </form>
 </div>
 </body>

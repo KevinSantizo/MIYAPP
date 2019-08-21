@@ -26,7 +26,7 @@ class FieldAdmin(admin.ModelAdmin):
 
 @admin.register(Reservation)
 class ReservationAdmin(admin.ModelAdmin):
-    list_display = ('company', 'customer_reserve', 'field_reserve', 'schedule_date', 'schedule_time')
+    list_display = ('company_reserve', 'customer_reserve', 'field_reserve', 'schedule_date', 'schedule_time')
 
 
 

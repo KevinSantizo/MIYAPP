@@ -51,14 +51,14 @@ class Company(models.Model):
 
 
 class Reservation(models.Model):
-    company = models.ForeignKey(Company, on_delete=models.CASCADE, null=True)
+    company_reserve = models.ForeignKey(Company, on_delete=models.CASCADE, null=True)
     customer_reserve = models.ForeignKey(Customer, on_delete=models.CASCADE, related_name='customer_reserve')
     field_reserve = models.ForeignKey(Field, on_delete=models.CASCADE)
     schedule_date = models.DateField(null=True)
     schedule_time = models.TimeField(null=True)
 
     def __str__(self):
-        return 'Company: ' + self.company.name + 'Address:' + self.company.address + 'Customer: ' + self.customer_reserve.first_name + ' --- Type Field: --- ' + self.field_reserve.type + ' --- Date Reserved: --- ' \
+        return 'Company: ' + self.company_reserve.name + 'Address:' + self.company_reserve.address + 'Customer: ' + self.customer_reserve.first_name + ' --- Type Field: --- ' + self.field_reserve.type + ' --- Date Reserved: --- ' \
                + str(self.schedule_date) + ' Schedule Time ' + str(self.schedule_time) + ' --- Price: --- ' + self.field_reserve.price
 
     def get_absolute_url(self):

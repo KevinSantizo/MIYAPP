@@ -242,7 +242,8 @@ iframe {
   height: 75%;
   top: 0;
   left: 0;
-  background-color: rgba(54,84,99,0.7);
+  background-color: #ffc107bd;
+
 }
 
 
@@ -272,8 +273,8 @@ iframe {
 }
 
 .label-input100 {
-  font-family: Poppins-Regular;
-  font-size: 15px;
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 17px;
   color: #808080;
   line-height: 1.2;
   text-align: right;
@@ -287,8 +288,8 @@ iframe {
 
 /*---------------------------------------------*/
 .input100 {
-  font-family: Poppins-Regular;
-  font-size: 15px;
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 17px;
   color: #555555;
   line-height: 1.2;
 
@@ -415,11 +416,11 @@ input.input100 {
   min-width: 160px;
   margin-bottom: 2em;
   height: 50px;
-  background-color: #57b846;
-  border-radius: 25px;
+  background-color: #ffc107bd;
+  border-radius: 15px;
 
-  font-family: Poppins-Regular;
-  font-size: 16px;
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 20px;
   color: #fff;
   line-height: 1.2;
 
@@ -430,7 +431,9 @@ input.input100 {
 }
 
 .login100-form-btn:hover {
-  background-color: #333333;
+  background-color: #fff;
+  color: #ffc107bd;
+  border: solid 1px #333333;
 }
 
 

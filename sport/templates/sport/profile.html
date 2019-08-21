@@ -26,7 +26,7 @@
 		<ul>
 			<li><a href="{% url 'sport:page' customer.pk %}">Inicio</a></li>
 			<li><a href="{% url 'sport:edit-profile' customer.pk %}">Editar Perfil</a></li>
-			<li><a href="">Cerrar Sesión</a></li>
+			<li><a href="{% url 'users:login' %}">Cerrar Sesión</a></li>
 		</ul>
 	</nav>
 		<h1>MI PERFIL</h1>
@@ -36,8 +36,7 @@
 			<label>Dirección: {{ customer.address}}</label>
 
 
-				<label>Reservaciones: {{ reservation }}</label>
-	</div>
+		<label><a href="{% url 'sport:show-reservation' customer.pk %}">Reservaciones: {{ reservation }}</a></label>
 </body>
 </html>
 

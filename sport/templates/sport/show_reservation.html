@@ -26,9 +26,8 @@
 	<h2>Menu</h2>
 	<ul>
 		<li><a href="{% url 'sport:page' customer_pk %}">Inicio</a></li>
-    <li><a href="{% url 'sport:new-reservation' customer_pk %}">Agregar Nueva Reservación</a></li>
-		<li><a href="elements.html">Elements</a></li>
-		<li><a href="">Cerrar Sesión</a></li>
+        <li><a href="{% url 'sport:new-reservation' customer_pk %}">Agregar Nueva Reservación</a></li>
+        <li><a href="{% url 'users:login' %}">Cerrar Sesión</a></li>
 	</ul>
 </nav>
     <h1>Mis Reservaciones </h1>
@@ -46,7 +45,7 @@
      {% if reservation %}
             {% for res in reservation %}
             <tr>
-                <td>{{ res.company }}</td>
+                <td>{{ res.company_reserve }}</td>
                 <td>{{ res.customer_reserve}}</td>
                 <td>{{ res.field_reserve}}</td>
                 <td>{{ res.schedule_date }}</td>
