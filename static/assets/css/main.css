@@ -165,7 +165,7 @@ input, select, textarea {
 
 		a:hover {
 			border-bottom-color: transparent;
-			color: #ffc107bd !important;
+			color: #ffc107bd ;
 		}
 
 	strong, b {
@@ -209,7 +209,7 @@ input, select, textarea {
 
 		}
 
-	h2, h3, h4, h5, h6 {
+	h3, h4, h5, h6 {
 		font-weight: 900;
 		line-height: 1.5;
 		margin: 0 0 2em 0;
@@ -223,6 +223,11 @@ input, select, textarea {
 
 	h2 {
 		font-size: 1.1em;
+		margin: 0 0 2em 3em;
+		text-transform: uppercase;
+		letter-spacing: 0.35em;
+		font-weight: 900;
+		line-height: 1.5;
 	}
 
 	h3 {
@@ -2057,7 +2062,7 @@ input, select, textarea {
 		cursor: default;
 		list-style: none;
 		padding-left: 0;
-		margin: -1em 0 2em -1em;
+		margin: -1em 0 2em 1em;
 	}
 
 		ul.icons li {
@@ -3017,6 +3022,8 @@ input[type="checkbox"],
 	#footer {
 		padding: 5em 0 6em 0 ;
 		background-color: #f6f6f6;
+        margin-top: 3em;
+        height: 17em;
 	}
 
 		#footer > .inner {
@@ -3072,7 +3079,7 @@ input[type="checkbox"],
 					#footer > .inner .copyright li:first-child {
 						border-left: 0;
 						padding-left: 0;
-						margin-left: 0;
+						margin-left: 2em;
 					}
 
 		@media screen and (max-width: 1280px) {

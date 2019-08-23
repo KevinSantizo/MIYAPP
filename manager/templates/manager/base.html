@@ -1,0 +1,24 @@
+<!DOCTYPE HTML>
+
+<html>
+	<head>
+		<title>Forty by HTML5 UP</title>
+		<meta charset="utf-8" />
+        {% load static %}
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="{% static 'assetss/css/main.css' %}" />
+		<noscript><link rel="stylesheet" href="assetss/css/noscript.css" /></noscript>
+	</head>
+    <body class="is-preload">
+            {% block content %}
+            {% endblock %}
+			<script src="{% static 'assetss/js/jquery.min.js' %}"></script>
+			<script src="{% static 'assetss/js/jquery.scrolly.min.js' %}"></script>
+			<script src="{% static 'assetss/js/jquery.scrollex.min.js' %}"></script>
+			<script src="{% static 'assetss/js/browser.min.js' %}"></script>
+			<script src="{% static 'assetss/js/breakpoints.min.js' %}"></script>
+			<script src="{% static 'assetss/js/util.js' %}"></script>
+			<script src="{% static 'assetss/js/main.js' %}"></script>
+
+	</body>
+</html>

@@ -43,6 +43,17 @@
 										</div>
 									</a>
 								</article>
+								<article class="style3">
+									<span class="image">
+										<img src="{% static 'imagess/reser.jpg' %}" alt="" />
+									</span>
+									<a href="{% url 'sport:show-reservation' customer %}">
+										<h2>Torneos</h2>
+										<div class="content">
+											<p>Inscríbete a un Torneo</p>
+										</div>
+									</a>
+								</article>
 								<!--
 								<article class="style3">
 									<span class="image">
@@ -187,7 +198,7 @@
 			<script src="{% static 'assets/js/breakpoints.min.js' %}"></script>
 			<script src="{% static 'assets/js/util.js' %}"></script>
 			<script src="{% static 'assets/js/main.js' %}"></script>
-
+					</div>
 	</body>
 </html>
 {% endblock %}

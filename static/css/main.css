@@ -61,14 +61,6 @@ a {
   -moz-transition: all 0.4s;
 }
 
-a:focus {
-	outline: none !important;
-}
-
-a:hover {
-	text-decoration: none;
-  color: #57b846;
-}
 
 /*---------------------------------------------*/
 h1,h2,h3,h4,h5,h6 {
@@ -223,6 +215,43 @@ iframe {
   background-position: center;
   padding: 70px 15px 74px 15px;
 }
+ .login{
+  width: 100%;
+  position: relative;
+  z-index: 1;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  padding: 70px 15px 74px 15px;
+ }
+
+ .register{
+  width: 100%;
+  position: relative;
+  z-index: 1;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  padding: 70px 15px 74px 15px;
+ }
+
+
 
 .login100-form-title-1 {
   font-family: Poppins-Bold;
@@ -243,7 +272,6 @@ iframe {
   top: 0;
   left: 0;
   background-color: #ffc107bd;
-
 }
 
 

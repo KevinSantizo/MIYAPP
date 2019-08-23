@@ -27,6 +27,7 @@
 	<ul>
 		<li><a href="{% url 'sport:page' customer_pk %}">Inicio</a></li>
         <li><a href="{% url 'sport:new-reservation' customer_pk %}">Agregar Nueva Reservación</a></li>
+        <li><a href="{% url 'sport:profile' customer_pk %}">Mi Perfil</a></li>
         <li><a href="{% url 'users:login' %}">Cerrar Sesión</a></li>
 	</ul>
 </nav>
@@ -52,7 +53,7 @@
                 <td>{{ res.schedule_time }}</td>
                 <td>
                     <a href="{% url 'sport:delete' res.pk %}"><button type="button" class="btn btn-danger">Eliminar</button></a>
-                    <a href="{% url 'sport:edit-reservation' res.pk %}"><button type="button" class="btn btn-warning">Editar</button></a>
+                    <a href="{% url 'sport:save-reservation' res.pk %}"><button type="button" class="btn btn-warning">Editar</button></a>
                 </td>
             </tr>
             {% endfor %}

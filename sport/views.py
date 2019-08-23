@@ -56,21 +56,6 @@ def show_reservation(request, customer_pk):
 
 
 def edit_reservation(request, reservation_pk):
-    template = 'sport/edit_reservation.html'
-    company_reserve = Reservation.objects.get(pk=reservation_pk)
-    field_reserve = Reservation.objects.get(pk=reservation_pk)
-    context = {
-        'reservation': Reservation.objects.get(pk=reservation_pk),
-        'companies': Company.objects.all(),
-        'fields': Field.objects.all(),
-        'company_instance': company_reserve,
-        'field_instance': field_reserve,
-    }
-
-    return render(request, template, context)
-
-
-def confirm_edit_reservation(request, reservation_pk):
     if request.method == 'POST':
         post_company = Company.objects.get(pk=request.POST['company'])
         post_field = Field.objects.get(pk=request.POST['field'])
@@ -82,6 +67,19 @@ def confirm_edit_reservation(request, reservation_pk):
         updated_reservation.save()
 
         return HttpResponseRedirect(reverse('sport:show-reservation', kwargs={'customer_pk': updated_reservation.customer_reserve.id}))
+    elif request.method == 'GET':
+        template = 'sport/edit_reservation.html'
+        company_reserve = Reservation.objects.get(pk=reservation_pk)
+        field_reserve = Reservation.objects.get(pk=reservation_pk)
+        context = {
+            'reservation': Reservation.objects.get(pk=reservation_pk),
+            'companies': Company.objects.all(),
+            'fields': Field.objects.all(),
+            'company_instance': company_reserve,
+            'field_instance': field_reserve,
+        }
+
+        return render(request, template, context)
     return HttpResponse('Error: method not allowed.')
 
 
@@ -97,6 +95,7 @@ def create_field(request):
         post_company = Company.objects.get(pk=request.POST['company'])
         new_field = Field(
             company=post_company,
+            name=request.POST['name'],
             status=request.POST['status'],
             type=request.POST['type'],
             price=request.POST['price'],

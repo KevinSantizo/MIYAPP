@@ -1,5 +1,4 @@
 from django.shortcuts import render
-from django.shortcuts import render
 from django.shortcuts import HttpResponseRedirect, reverse, HttpResponse
 from users.models import Customer
 

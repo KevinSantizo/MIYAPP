@@ -33,6 +33,7 @@
      <thead class="thead-dark thr">
             <tr>
                 <th>COMPAÑÍA</th>
+                <th>DESCRIPCIÓN</th>
                 <th>ESTADO</th>
                 <th>CANCHA - TIPO DE CANCHA</th>
                 <th>PRECIO</th>
@@ -42,6 +43,7 @@
             {% for field in field_list %}
             <tr>
                 <td>{{ field.company }}</td>
+                <td>{{ field.name }}</td>
                 <td>{{ field.status }}</td>
                 <td>{{ field.type }}</td>
                 <td>{{ field.price }}</td>
