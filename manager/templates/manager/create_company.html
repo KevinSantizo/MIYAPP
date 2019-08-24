@@ -1,6 +1,48 @@
-{% extends "sport/base.html" %}
+{% extends "manager/form_base.html" %}
 {% block content %}
 
+	<div class="bg-contact100" style="background-image: url('images/bg-01.jpg');">
+		<div class="container-contact100">
+			<div class="wrap-contact100">
+				<div class="contact100-pic js-tilt" data-tilt>
+					<img src="images/img-01.png" alt="IMG">
+				</div>
+
+				<form class="contact100-form validate-form">
+					<span class="contact100-form-title">
+						Get in touch
+					</span>
+
+					<div class="wrap-input100 validate-input" data-validate = "Name is required">
+						<input class="input100" type="text" name="name" placeholder="Name">
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-user" aria-hidden="true"></i>
+						</span>
+					</div>
+
+					<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+						<input class="input100" type="text" name="phone" placeholder="Teléfono">
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-envelope" aria-hidden="true"></i>
+						</span>
+					</div>
+
+					<div class="wrap-input100 validate-input">
+                        <input class="input100" type="email" name="email" placeholder="Email" required>
+						<span class="focus-input100"></span>
+					</div>
+
+					<div class="container-contact100-form-btn">
+						<button class="contact100-form-btn">
+							Send
+						</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -26,12 +68,12 @@
 <nav id="menu">
 	<h2>Menu</h2>
 	<ul>
-		<li><a href="{% url 'sport:show-company' %}">Regresar</a></li>
-		<li><a href="">Cerrar Sesión</a></li>
+		<li><a href="{% url 'manager:show-company' manager_pk %}">Regresar</a></li>
+		<li><a href="{% url 'manager:login' %}">Cerrar Sesión</a></li>
 	</ul>
 </nav>
     <h1>Agregar Centro Deportivo</h1>
-<form action="{% url 'sport:new-company' %}" method="POST">
+<form action="{% url 'manager:new-company' manager_pk %}" method="POST">
         {% csrf_token %}
         <p>
         <div class="form-group">

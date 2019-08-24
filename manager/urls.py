@@ -5,5 +5,9 @@ app_name = 'manager'
 urlpatterns = [
     path('page-manager/<int:manager_pk>/', views.page_manager, name='page-manager'),
     path('login/', views.login_manager, name='login'),
-    path('register/', views.register_manager, name='register')
+    path('register/', views.register_manager, name='register'),
+    path('new-company/<int:manager_pk>/', views.create_company, name='new-company'),
+    path('show-company/<int:manager_pk>/', views.show_company, name='show-company'),
+    path('edit-company/<int:company_pk>/', views.edit_company, name='edit-company'),
+    path('delete-company/<int:company_pk>/', views.delete_company, name='delete-company'),
 ]

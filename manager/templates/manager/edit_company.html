@@ -26,12 +26,12 @@
 <nav id="menu">
 	<h2>Menu</h2>
 	<ul>
-		<li><a href="{% url 'sport:show-company' %}">Cancelar</a></li>
+		<li><a href="">Cancelar</a></li>
 		<li><a href="">Cerrar Sesión</a></li>
 	</ul>
 </nav>
     <h1>Editar Centro Deportivo</h1>
-<form action="{% url 'sport:edit-company' company.pk %}" method="POST">
+<form action="{% url 'manager:edit-company' company.pk %}" method="POST">
         {% csrf_token %}
         <p>
         {% if company %}

@@ -13,10 +13,8 @@ urlpatterns = [
     path('edit-field/<int:field_pk>/', views.edit_field, name='edit-field'),
     path('delete-field/<int:field_pk>/', views.delete_field, name='delete-field'),
     path('show-field/', views.show_field, name='show-field'),
-    path('new-company/', views.create_company, name='new-company'),
-    path('show-company/', views.show_company, name='show-company'),
-    path('edit-company/<int:company_pk>/', views.edit_company, name='edit-company'),
-    path('delete-company/<int:company_pk>/', views.delete_company, name='delete-company'),
     path('profile/<int:customer_pk>/', views.profile, name='profile'),
     path('edit-profile/<int:customer_pk>/', views.edit_profile, name='edit-profile'),
+    path('show-championship/<int:customer_pk>/', views.show_championship, name='show-championship'),
+    path('registration/<int:customer_pk>/', views.register_team, name='registration'),
 ]

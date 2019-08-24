@@ -1,5 +1,5 @@
 from django.contrib import admin
-from sport.models import Reservation, Bill, Championship, Group, Team, Match, Result, Field, Company
+from sport.models import Reservation, Bill, Championship, Group, Team, Match, Result, Field, Company, AssignGroup
 # Register your models here.
 
 
@@ -25,17 +25,27 @@ class FieldAdmin(admin.ModelAdmin):
 
 @admin.register(Championship)
 class ChampionshipAdmin(admin.ModelAdmin):
-    list_display = ('championship_company', 'name_championship', 'description')
+    list_display = ('championship_company', 'name_championship', 'description', 'registration_price')
+
+
+class AssignGroupInline(admin.TabularInline):
+    model = AssignGroup
 
 
 @admin.register(Group)
 class GroupAdmin(admin.ModelAdmin):
     list_display = ('championship_group', 'name_group')
+    inlines = [AssignGroupInline]
+
+
+class AssignGroupInline(admin.TabularInline):
+    model = AssignGroup
 
 
 @admin.register(Team)
 class TeamAdmin(admin.ModelAdmin):
-    list_display = ('agent_team', 'group_team', 'name_team', 'players')
+    list_display = ('agent_team', 'name_team', 'players')
+    inlines = [AssignGroupInline]
 
 
 @admin.register(Match)
@@ -46,6 +56,12 @@ class MatchAdmin(admin.ModelAdmin):
 @admin.register(Result)
 class ResultAdmin(admin.ModelAdmin):
     list_display = ('match', 'team', 'goal_team', 'date_result')
+
+
+@admin.register(AssignGroup)
+class AssignGroupAdmin(admin.ModelAdmin):
+    list_display = ('group', 'team')
+
 
 
 

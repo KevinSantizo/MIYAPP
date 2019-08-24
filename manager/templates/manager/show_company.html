@@ -1,83 +1,90 @@
-{% extends "sport/base.html" %}
+{% extends "manager/base.html" %}
 {% block content %}
+{% load static %}
+        <div id="wrapper">
+            <header id="header" class="alt">
+                <a href="{% url 'manager:page-manager' manager_pk %}" class="logo"><strong>Sport Center</strong> <span>Administración</span></a>
+                <nav>
+                    <a href="#menu">Menu</a>
+                </nav>
+            </header>
+            <nav id="menu">
+                <ul class="links">
+                    <li><a href="{% url 'manager:page-manager' manager_pk %}">Inicio</a></li>
+                    <li><a href="{% url 'manager:new-company' manager_pk %}">Nuevo Centro Deportivo</a></li>
+                </ul>
+                <ul class="actions stacked">
+                    <li><a href="{% url 'manager:login' %}" class="button primary fit">Cerrar Sesión</a></li>
+                </ul>
+            </nav>
+            <section id="banner" class="style2">
+                <div class="inner">
+                    <span class="image">
+                        <img src="{% static 'images/pic07.jpg' %}" alt="" />
+                    </span>
+                    <header class="major">
+                        <h1>Centros Deportivos</h1>
+                    </header>
+                    <div class="content">
+                        <p>Lorem ipsum dolor sit amet nullam consequat<br />
+                        sed veroeros. tempus adipiscing nulla.</p>
+                    </div>
+                </div>
+            </section>
 
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Compañías</title>
-</head>
-<body>
-<div id="body">
-    <header id="header">
-	<div class="inner">
-			<a class="logo">
-                {% load static %}
-				<span class="symbol"><img src="{% static 'imagess/ball.svg' %}" alt="" /></span><span class="title">Sport Center</span>
-			</a>
-			<nav>
-				<ul>
-					<li><a href="#menu">Menu</a></li>
-				</ul>
-			</nav>
+				<!-- Main -->
+					<div id="main">
 
-	</div>
-</header>
+						<!-- One -->
+							<section id="one">
+								<div class="inner">
+									<header class="major">
+										<h2>Sed amet aliquam</h2>
+									</header>
+									<p>Nullam et orci eu lorem consequat tincidunt vivamus et sagittis magna sed nunc rhoncus condimentum sem. In efficitur ligula tate urna. Maecenas massa vel lacinia pellentesque lorem ipsum dolor. Nullam et orci eu lorem consequat tincidunt. Vivamus et sagittis libero. Nullam et orci eu lorem consequat tincidunt vivamus et sagittis magna sed nunc rhoncus condimentum sem. In efficitur ligula tate urna.</p>
+								</div>
+							</section>
 
-<nav id="menu">
-	<h2>Menu</h2>
-	<ul>
-        <li><a href="">Inicio</a></li>
-		<li><a href="{% url 'sport:new-company' %}">Agregar Centro Deportivo</a></li>
-	</ul>
-</nav>
-    <h1>Centro Deportivo</h1>
- <table class="table table-bordered table-sm tablesita">
-     <thead class="thead-dark thr">
-            <tr>
-                <th>COMPAÑÍA</th>
-                <th>DIRECCIÓN</th>
-                <th>TELEFÓNO</th>
-                <th>CORREO ELECTRÓNICO</th>
-                <th>OPCIONES</th>
-            </tr>
-      </thead>
-            {% for company in company_list %}
-            <tr>
-                <td>{{ company.name }}</td>
-                <td>{{ company.address }}</td>
-                <td>{{ company.phone }}</td>
-                <td>{{ company.email }}</td>
-                <td>
-                    <a href="{% url 'sport:delete-company' company.pk %}"><button type="button" class="btn btn-danger">Eliminar</button></a>
-                    <a href="{% url 'sport:edit-company' company.pk %}"><button type="button" class="btn btn-warning">Editar</button></a>
-                </td>
-            </tr>
-            {% endfor %}
+						<!-- Two -->
+							<section id="two" class="spotlights">
+                                {% for company in company_list %}
+								<section>
+									<a href="generic.html" class="image">
+										<img src="{% static 'images/resultados.jpg' %}" alt="" data-position="center center" />
+									</a>
+									<div class="content">
+										<div class="inner">
+											<header class="major">
+												<h3>{{ company.name }}</h3>
+											</header>
+											<p>Ubicada en: <strong>{{ company.address }}</strong>
+                                                <br>Número Telefónico: <strong>{{ company.phone }}</strong>
+                                                <br>Correo Electrónico: <strong>{{ company.email }}</strong>
+                                            </p>
+                                            <ul class="actions">
+												<li><a href="{% url 'manager:edit-company' company.pk %}" class="button">Editar</a></li>
+                                                <li><a href="{% url 'manager:delete-company' company.pk %}" class="button primary fit">Eliminar</a></li>
 
-        </table>
-{% if company_list.has_other_pages %}
-  <ul class="pagination">
-    {% if company_list.has_previous %}
-      <li><a href="?page={{ available.previous_page_number }}">&laquo;</a></li>
-    {% else %}
-      <li class="disabled"><span>&laquo;</span></li>
-    {% endif %}
-    {% for i in company_list.paginator.page_range %}
-      {% if company_list.number == i %}
-        <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
-      {% else %}
-        <li><a href="?page={{ i }}">{{ i }}</a></li>
-      {% endif %}
-    {% endfor %}
-    {% if company_list.has_next %}
-      <li><a href="?page={{ available.next_page_number }}">&raquo;</a></li>
-    {% else %}
-      <li class="disabled"><span>&raquo;</span></li>
-    {% endif %}
-  </ul>
-</div>
-</body>
-</html>
-{% endif %}
+											</ul>
+										</div>
+									</div>
+								</section>
+                                {% endfor %}
+							</section>
+
+						<!-- Three -->
+							<section id="three">
+								<div class="inner">
+									<header class="major">
+										<h2>Massa libero</h2>
+									</header>
+									<p>Nullam et orci eu lorem consequat tincidunt vivamus et sagittis libero. Mauris aliquet magna magna sed nunc rhoncus pharetra. Pellentesque condimentum sem. In efficitur ligula tate urna. Maecenas laoreet massa vel lacinia pellentesque lorem ipsum dolor. Nullam et orci eu lorem consequat tincidunt. Vivamus et sagittis libero. Mauris aliquet magna magna sed nunc rhoncus amet pharetra et feugiat tempus.</p>
+									<ul class="actions">
+										<li><a href="generic.html" class="button next">Get Started</a></li>
+									</ul>
+								</div>
+							</section>
+					</div>
+        </div>
 
 {% endblock %}

@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from sport.models import Field, Company, Reservation, Bill
+from sport.models import Field, Company, Reservation, Bill, AssignGroup, Championship, Team
 from users.models import Customer
 from django.shortcuts import HttpResponseRedirect, reverse, HttpResponse
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -151,63 +151,6 @@ def delete_field(request, field_pk):
     return HttpResponseRedirect(reverse('sport:show-field'))
 
 
-def create_company(request):
-    if request.method == 'POST':
-        new_company = Company(
-            name=request.POST['name'],
-            address=request.POST['address'],
-            phone=request.POST['phone'],
-            email=request.POST['email'],
-        )
-        new_company.save()
-        return HttpResponseRedirect(reverse('sport:show-company'))
-    elif request.method == 'GET':
-        template = 'sport/create_company.html'
-        return render(request, template)
-    return HttpResponse('No se puede guardar')
-
-
-def show_company(request):
-    template = 'sport/show_company.html'
-    list_company = Company.objects.all()
-
-    paginator = Paginator(list_company, 10)
-    try:
-        company_list = list_company
-    except PageNotAnInteger:
-        company_list = list_company
-    except EmptyPage:
-        company_list = list_company
-
-    return render(request, template, {'company_list': company_list}, {'paginator': paginator})
-
-
-def edit_company(request, company_pk):
-    if request.method == 'POST':
-        updated_company = Company.objects.get(pk=company_pk)
-        updated_company.name = request.POST['name']
-        updated_company.address = request.POST['address']
-        updated_company.phone = request.POST['phone']
-        updated_company.email = request.POST['email']
-        updated_company.save()
-
-        return HttpResponseRedirect(reverse('sport:show-company'))
-    elif request.method == 'GET':
-        template = 'sport/edit_company.html'
-        context = {
-            'company': Company.objects.get(pk=company_pk)
-        }
-        return render(request, template, context)
-    return HttpResponse('Error: method not allowed.')
-
-
-def delete_company(request, company_pk):
-    deleted_company = Company.objects.get(id=company_pk)
-    deleted_company.delete()
-
-    return HttpResponseRedirect(reverse('sport:show-company'))
-
-
 def profile(request, customer_pk):
     template = 'sport/profile.html'
     context = {
@@ -236,3 +179,36 @@ def edit_profile(request, customer_pk):
         }
         return render(request, template, context)
     return HttpResponse('Error: method not allowed.')
+
+
+def show_championship(request, customer_pk):
+    template = 'sport/show_championship.html'
+    context = {
+        'championships': Championship.objects.all(),
+        'customer_pk': customer_pk,
+    }
+
+    return render(request, template, context)
+
+
+def register_team(request, customer_pk):
+    if request.method == 'POST':
+        post_customer = Customer.objects.get(pk=request.POST['agent_team'])
+        new_team = Team(
+            agent_team=post_customer,
+            name_team=request.POST['name_team'],
+            players=request.POST['players'],
+        )
+        new_team.save()
+        return HttpResponseRedirect(reverse('sport:show-championship', kwargs={'customer_pk': request.POST['agent_team']}))
+    elif request.method == 'GET':
+        template = 'sport/registration.html'
+        context = {
+            'customer': Customer.objects.get(pk=customer_pk),
+            'team_agent': Team.objects.filter(agent_team=customer_pk)
+
+        }
+        return render(request, template, context)
+    return HttpResponse('No se puede guardar')
+
+

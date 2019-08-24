@@ -46,7 +46,7 @@ class Company(models.Model):
     email = models.EmailField(unique=True)
 
     def __str__(self):
-        return self.name + ' -- ' + self.address
+        return self.name + ', ' + self.address
 
 
 class Reservation(models.Model):
@@ -71,6 +71,7 @@ class Championship(models.Model):
     championship_company = models.ForeignKey(Company, on_delete=models.CASCADE)
     name_championship = models.CharField(max_length=100)
     description = models.TextField()
+    registration_price = models.CharField(max_length=100, null=True)
 
     def __str__(self):
         return 'Company: ' + self.championship_company.name + ' ' + self.name_championship + ' ' + self.description
@@ -81,17 +82,16 @@ class Group(models.Model):
     name_group = models.CharField(max_length=100)
 
     def __str__(self):
-        return 'Championship: ' + self.championship_group.name_championship
+        return 'Group: ' + self.name_group + '  ' + self.championship_group.name_championship + '  ' + self.championship_group.championship_company.name
 
 
 class Team(models.Model):
     agent_team = models.OneToOneField(Customer, on_delete=models.CASCADE)
-    group_team = models.ForeignKey(Group, on_delete=models.CASCADE)
     name_team = models.CharField(max_length=100)
     players = models.PositiveIntegerField()
 
     def __str__(self):
-        return 'Agent: ' + self.agent_team.first_name + ' Group: ' + self.group_team.name_group + ' ' + self.name_team
+        return 'Agent: ' + self.agent_team.first_name + ' ' + self.name_team
 
 
 class Match(models.Model):
@@ -111,4 +111,8 @@ class Result(models.Model):
     goal_team = models.PositiveIntegerField()
     date_result = models.DateField()
 
+
+class AssignGroup(models.Model):
+    group = models.ForeignKey(Group, on_delete=models.CASCADE)
+    team = models.ForeignKey(Team, on_delete=models.CASCADE)
 

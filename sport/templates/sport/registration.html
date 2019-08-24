@@ -1,0 +1,65 @@
+{% extends "users/base.html" %}
+{% block content %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="body">
+        <header id="header">
+            <div class="inner">
+                <a class="logo">
+                    {% load static %}
+                    <span class="symbol"><img src="{% static 'imagess/ball.svg' %}" alt="" /></span><span class="title">Sport Center</span>
+                </a>
+                <nav>
+                    <ul>
+                        <li><a href="#menu">Menu</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+        <nav id="menu">
+            <h2>Menu</h2>
+            <ul>
+                <li><a href="{% url 'sport:page' customer.pk %}">Inicio</a></li>
+                <li><a href="{% url 'sport:show-championship' customer.pk %}">Cancelar</a></li>
+            </ul>
+        </nav>
+        <h1>Registre a su Equipo</h1>
+        <form action="{% url 'sport:registration' customer.pk %}" method="POST">
+            {% csrf_token %}
+            <p>
+            <div class="form-group">
+            {{ team_agent }}
+            {% if team_agent %}
+                <p>ya te encuentras inscrito </p>
+                {% else %}
+                <label>Representante: {{ customer.first_name }} {{ customer.last_name }}</label>
+                    {% if customer %}
+                <input type="hidden" name="agent_team" class="form-control" value="{{ customer.id }}" readonly>
+                    {% endif %}
+            </div>
+            </p>
+            <div class="form-group">
+                <label>Nombre del Equipo:</label>
+                <input type="text" class="form-control input"  name="name_team" required>
+            </div>
+            </p>
+            <p>
+            <div class="form-group">
+                <label>Número de Jugadores:</label>
+                <input type="number" class="form-control input"  name="players" required>
+            </div>
+            </p>
+            <button type="submit" class="btn btn-success btn-lg ">Inscribir Equipo</button>
+            <a href=""><button type="submit" class="btn btn-danger btn-lg">Cancelar</button></a>
+                {% endif %}
+
+        </form>
+    </div>
+</body>
+</html>
+{% endblock %}
