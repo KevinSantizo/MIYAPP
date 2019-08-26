@@ -10,4 +10,7 @@ urlpatterns = [
     path('show-company/<int:manager_pk>/', views.show_company, name='show-company'),
     path('edit-company/<int:company_pk>/', views.edit_company, name='edit-company'),
     path('delete-company/<int:company_pk>/', views.delete_company, name='delete-company'),
+    path('show-championship/<int:manager_pk>/', views.show_championship, name='show-championship'),
+    path('new-championship/<int:manager_pk>/', views.create_championship, name='new-championship'),
+    path('edit-championship/<int:championship_pk>/', views.edit_championship, name='edit-championship'),
 ]

@@ -93,46 +93,28 @@ textarea {
   border: none;
 }
 
-textarea:focus, input:focus {
-  border-color: transparent !important;
-}
 
-input:focus::-webkit-input-placeholder { color:transparent; }
-input:focus:-moz-placeholder { color:transparent; }
-input:focus::-moz-placeholder { color:transparent; }
-input:focus:-ms-input-placeholder { color:transparent; }
+input:focus::-webkit-input-placeholder { color:transparent !important; }
+input:focus:-moz-placeholder { color:transparent !important; }
+input:focus::-moz-placeholder { color:transparent !important; }
+input:focus:-ms-input-placeholder { color:transparent !important; }
 
-textarea:focus::-webkit-input-placeholder { color:transparent; }
-textarea:focus:-moz-placeholder { color:transparent; }
-textarea:focus::-moz-placeholder { color:transparent; }
-textarea:focus:-ms-input-placeholder { color:transparent; }
+textarea:focus::-webkit-input-placeholder { color:transparent !important; }
+textarea:focus:-moz-placeholder { color:transparent !important; }
+textarea:focus::-moz-placeholder { color:transparent !important; }
+textarea:focus:-ms-input-placeholder { color:transparent !important; }
 
-input::-webkit-input-placeholder { color: #aaaaaa; }
-input:-moz-placeholder { color: #aaaaaa; }
-input::-moz-placeholder { color: #aaaaaa; }
-input:-ms-input-placeholder { color: #aaaaaa; }
+input::-webkit-input-placeholder { color: #aaaaaa !important; }
+input:-moz-placeholder { color: #aaaaaa !important; }
+input::-moz-placeholder { color: #aaaaaa !important; }
+input:-ms-input-placeholder { color: #aaaaaa !important; }
 
-textarea::-webkit-input-placeholder { color: #aaaaaa; }
-textarea:-moz-placeholder { color: #aaaaaa; }
-textarea::-moz-placeholder { color: #aaaaaa; }
-textarea:-ms-input-placeholder { color: #aaaaaa; }
+textarea::-webkit-input-placeholder { color: #aaaaaa !important; }
+textarea:-moz-placeholder { color: #aaaaaa !important; }
+textarea::-moz-placeholder { color: #aaaaaa !important; }
+textarea:-ms-input-placeholder { color: #aaaaaa !important; }
 
 /*---------------------------------------------*/
-button {
-	outline: none !important;
-	border: none;
-	background: transparent;
-}
-
-button:hover {
-	cursor: pointer;
-}
-
-iframe {
-	border: none !important;
-}
-
-
 
 
 /*//////////////////////////////////////////////////////////////////
@@ -146,7 +128,7 @@ iframe {
 }
 
 .container-contact100 {
-  width: 100%;  
+  width: 100%;
   min-height: 100vh;
   display: -webkit-box;
   display: -webkit-flex;
@@ -157,11 +139,11 @@ iframe {
   justify-content: center;
   align-items: center;
   padding: 15px;
-  background: rgba(132,106,221,0.9);
+  background: #2a2f4a;
 }
 
 .wrap-contact100 {
-  width: 1163px;
+  width: 75%;
   background: #fff;
   border-radius: 10px;
   overflow: hidden;
@@ -179,8 +161,10 @@ iframe {
 /*------------------------------------------------------------------
 [  ]*/
 .contact100-pic {
-  width: 310px;
-  padding-top: 55px;
+    width: 310px;
+    padding-top: 5em;
+    padding-left: 0em;
+    margin-left: -4em;
 }
 
 .contact100-pic img {
@@ -196,22 +180,23 @@ iframe {
 
 .contact100-form-title {
   display: block;
-  font-family: Montserrat-ExtraBold;
+  font-family: 'Ubuntu', sans-serif !important;
   font-size: 24px;
   color: #333333;
   line-height: 1.2;
   text-align: left;
   padding-bottom: 36px;
+  text-align: center;
 }
 
 input.input100 {
-  height: 50px;
-  border-radius: 25px;
-  padding: 0 30px 0 50px;
+  height: 50px !important;
+  border-radius: 25px !important;
+  padding: 0 30px 0 50px !important;
 }
 
 input.input100[name="email"] {
-  padding: 0 30px 0 54px;
+  padding: 0 30px 0 54px !important;
 }
 
 textarea.input100 {
@@ -231,33 +216,17 @@ textarea.input100 {
 .input100 {
   display: block;
   width: 100%;
-  background: #e6e6e6;
-  font-family: Montserrat-Bold;
+  background: #e6e6e6 !important;
+  font-family: 'Ubuntu', sans-serif;
   font-size: 15px;
   line-height: 1.5;
-  color: #666666;
+  color: #666666 !important;
+  border-radius: 25px !important;
 }
 
 
 /*------------------------------------------------------------------
 [ Focus ]*/
-.focus-input100 {
-  display: block;
-  position: absolute;
-  border-radius: 25px;
-  bottom: 0;
-  left: 0;
-  z-index: -1;
-  width: 100%;
-  height: 100%;
-  box-shadow: 0px 0px 0px 0px;
-  color: rgba(132,106,221, 0.5);
-}
-
-.input100:focus + .focus-input100 {
-  -webkit-animation: anim-shadow 0.5s ease-in-out forwards;
-  animation: anim-shadow 0.5s ease-in-out forwards;
-}
 
 @-webkit-keyframes anim-shadow {
   to {
@@ -297,10 +266,6 @@ textarea.input100 {
   transition: all 0.4s;
 }
 
-.input100:focus + .focus-input100 + .symbol-input100 {
-  color: #846add;
-  padding-left: 22px;
-}
 
 /*------------------------------------------------------------------
 [ Button ]*/
@@ -320,9 +285,9 @@ textarea.input100 {
   width: 100%;
   height: 50px;
   border-radius: 25px;
-  background: #846add;
-  font-family: Montserrat-Bold;
-  font-size: 15px;
+  background: #2a2f4a;
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 20px;
   line-height: 1.5;
   color: #fff;
   display: -webkit-box;
@@ -341,7 +306,9 @@ textarea.input100 {
 }
 
 .contact100-form-btn:hover {
-  background: #333333;
+  background-color: #fff !important;
+  color: #2a2f4a !important;
+  border: solid 1px #333333 !important;
 }
 
 /*------------------------------------------------------------------
@@ -364,6 +331,7 @@ textarea.input100 {
 
   .contact100-pic {
     width: 35%;
+        margin-left: -2em;
   }
 
   .contact100-form {
@@ -458,3 +426,5 @@ textarea.input100 {
     opacity: 1;
   }
 }
+
+

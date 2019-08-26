@@ -24,32 +24,38 @@
 					<img src="{% static 'imagesi/img-01.png' %}" alt="IMG">
 				</div>
 
-				<form class="contact100-form validate-form" action="{% url 'manager:new-company' manager_pk %}" method="POST">
+				<form class="contact100-form validate-form" action="{% url 'manager:new-championship' manager_pk %}" method="POST">
 					{% csrf_token %}
 					<span class="contact100-form-title">
-						Nuevo Centro Deportivo
+						Nuevo Torneo
 					</span>
-
+                     <div class="wrap-input100 validate-input">
+                            <label>Company:</label>
+                            <select class="input100" name="championship_company">
+                                {% for company in companies %}
+                                <option value="{{ company.id }}">{{ company }}</option>
+                                {% endfor %}
+                                <span class="focus-input100"></span>
+                                <span class="symbol-input100">
+						        </span>
+                            </select>
+                        </div>
 					<div class="wrap-input100 validate-input">
-						<input class="input100" type="text" name="name" placeholder="Nombre" required>
+						<input class="input100" type="text" name="name_championship" placeholder="Nombre" required>
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
 						</span>
 					</div>
 
 					<div class="wrap-input100 validate-input">
-						<input class="input100" type="text" name="address" placeholder="Dirección" required>
+						<input class="input100" type="text" name="description" placeholder="Descripción" required>
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
 						</span>
 					</div>
 
 					<div class="wrap-input100 validate-input">
-                        <input class="input100" type="text" name="phone" placeholder="Teléfono" required>
-						<span class="focus-input100"></span>
-					</div>
-					<div class="wrap-input100 validate-input">
-                        <input class="input100" type="email" name="email" placeholder="Correo Electrónico" required>
+                        <input class="input100" type="text" name="registration_price" placeholder="Precio" required>
 						<span class="focus-input100"></span>
 					</div>
 					<div class="container-contact100-form-btn">

@@ -1,0 +1,75 @@
+{% extends "manager/form_base.html" %}
+{% block content %}
+{% load static %}
+<div id="wrapper">
+	<header id="header" class="alt">
+        <a href="{% url 'manager:page-manager' manager_pk %}" class="logo"><strong>Sport Center</strong> <span>Administración</span></a>
+        <nav>
+            <a href="#menu">Menu</a>
+        </nav>
+    </header>
+    <nav id="menu">
+        <ul class="links">
+            <li><a href="{% url 'manager:page-manager' manager_pk %}">Inicio</a></li>
+            <li><a href="{% url 'manager:show-championship' manager_pk %}">Regresar</a></li>
+        </ul>
+        <ul class="actions stacked">
+            <li><a href="{% url 'manager:login' %}" class="button primary fit">Cerrar Sesión</a></li>
+        </ul>
+    </nav>
+	<div class="bg-contact100">
+		<div class="container-contact100">
+			<div class="wrap-contact100">
+				<div class="contact100-pic js-tilt" data-tilt>
+					<img src="{% static 'imagesi/img-01.png' %}" alt="IMG">
+				</div>
+				<form class="contact100-form validate-form" action="{% url 'manager:edit-championship' manager_pk %}" method="POST">
+					{% csrf_token %}
+					<span class="contact100-form-title">
+						Editar Información
+					</span>
+                     <div class="wrap-input100 validate-input">
+                            <label>Company:</label>
+                            <select class="input100" name="championship_company">
+                                {% for company in companies %}
+                                <option value="{{ company.id }}"{% if company.id == company_instance.championship_company.id %} selected="selected" {% endif %} >{{ company.name }}, {{ company.address }}</option>
+                                {% endfor %}
+                                <span class="focus-input100"></span>
+                                <span class="symbol-input100">
+						        </span>
+                            </select>
+                        </div>
+					<div class="wrap-input100 validate-input">
+						<input class="input100" type="text" name="name_championship" value="{{ championship.name_championship }}" required>
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+						</span>
+					</div>
+
+					<div class="wrap-input100 validate-input">
+						<input class="input100" type="text" name="description" value="{{ championship.description }}" required>
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+						</span>
+					</div>
+
+					<div class="wrap-input100 validate-input">
+                        <input class="input100" type="text" name="registration_price" value="{{ championship.registration_price }}" required>
+						<span class="focus-input100"></span>
+					</div>
+					<div class="container-contact100-form-btn">
+						<button class="buttonn" type="submit">
+							Agregar
+						</button>
+					</div>
+				</form>
+                <div class="container-contact100-form-btn">
+					<a href="{% url 'manager:show-championship' manager_pk %}"><button class="buttoe" type="submit">
+						Cancelar
+					</button></a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

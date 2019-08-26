@@ -2531,7 +2531,6 @@ input, select, textarea {
 		text-transform: uppercase;
 		white-space: nowrap;
 	}
-
 		input[type="submit"]:hover, input[type="submit"]:active,
 		input[type="reset"]:hover,
 		input[type="reset"]:active,

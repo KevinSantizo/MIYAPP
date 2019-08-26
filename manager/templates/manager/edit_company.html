@@ -1,65 +1,70 @@
-{% extends "sport/base.html" %}
+{% extends "manager/form_base.html" %}
 {% block content %}
+{% load static %}
+<div id="wrapper">
+	<header id="header" class="alt">
+                <a href="" class="logo"><strong>Sport Center</strong> <span>Administración</span></a>
+                <nav>
+                    <a href="#menu">Menu</a>
+                </nav>
+            </header>
+            <nav id="menu">
+                <ul class="links">
+                    <li><a href="{% url 'manager:page-manager' manager %}">Inicio</a></li>
+                    <li><a href="{% url 'manager:show-company' manager %}">Regresar</a></li>
+                </ul>
+                <ul class="actions stacked">
+                    <li><a href="{% url 'manager:login' %}" class="button primary fit">Cerrar Sesión</a></li>
+                </ul>
+            </nav>
+	<div class="bg-contact100">
+		<div class="container-contact100">
+			<div class="wrap-contact100">
+				<div class="contact100-pic js-tilt" data-tilt>
+					<img src="{% static 'imagesi/img-01.png' %}" alt="IMG">
+				</div>
 
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<div id="body">
-    <header id="header">
-	<div class="inner">
-			<a class="logo">
-                {% load static %}
-				<span class="symbol"><img src="{% static 'imagess/ball.svg' %}" alt="" /></span><span class="title">Sport Center</span>
-			</a>
-			<nav>
-				<ul>
-					<li><a href="#menu">Menu</a></li>
-				</ul>
-			</nav>
+				<form class="contact100-form validate-form" action="{% url 'manager:edit-company' company.pk %}" method="POST">
+					{% csrf_token %}
+					<span class="contact100-form-title">
+                            Editar Información
+                    </span>
 
+					<div class="wrap-input100 validate-input">
+						<input class="input100" type="text" name="name" value="{{company.name}}" required>
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+						</span>
+					</div>
+
+					<div class="wrap-input100 validate-input">
+						<input class="input100" type="text" name="address" value="{{company.address}}" required>
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+						</span>
+					</div>
+
+					<div class="wrap-input100 validate-input">
+                        <input class="input100" type="text" name="phone" value="{{company.phone}}" required>
+						<span class="focus-input100"></span>
+					</div>
+					<div class="wrap-input100 validate-input">
+                        <input class="input100" type="email" name="email" value="{{company.email}}" required>
+						<span class="focus-input100"></span>
+					</div>
+					<div class="container-contact100-form-btn">
+						<button class="buttonn" type="submit">
+							Guardar
+						</button>
+					</div>
+				</form>
+				 <div class="container-contact100-form-btn">
+					<a href="{% url 'manager:show-company' manager %}"><button class="buttoe" type="submit">
+						Cancelar
+					</button></a>
+				</div>
+			</div>
+		</div>
 	</div>
-</header>
-
-<nav id="menu">
-	<h2>Menu</h2>
-	<ul>
-		<li><a href="">Cancelar</a></li>
-		<li><a href="">Cerrar Sesión</a></li>
-	</ul>
-</nav>
-    <h1>Editar Centro Deportivo</h1>
-<form action="{% url 'manager:edit-company' company.pk %}" method="POST">
-        {% csrf_token %}
-        <p>
-        {% if company %}
-        <div class="form-group">
-            <label>Nombre:</label>
-            <input type="text" name="name" class="form-control inputs" value="{{ company.name }}">
-        </div>
-        </p>
-        <div class="form-group">
-            <label>Dirección</label>
-            <input type="text" name="address" class="form-control inputs" value="{{ company.address }}">
-        </div>
-        </p>
-        <div class="form-group">
-            <label>Teléfono:</label>
-            <input type="text" name="phone" class="form-control inputs" value="{{ company.phone }}">
-        </div>
-        </p>
-        <div class="form-group">
-            <label>Correo Electrónico:</label>
-            <input type="text" name="email" class="form-control inputs" value="{{ company.email }}">
-        </div>
-        </p>
-        {% endif %}
-        <button type="submit" class="btn btn-warning btn-lg">Editar</button>
-        <a href=""><button type="submit" class="btn btn-danger btn-lg">Cancelar</button></a>
-    </form>
 </div>
-</body>
-</html>
 {% endblock %}

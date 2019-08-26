@@ -90,67 +90,6 @@ def delete_reservation(request, reservation_id):
     return HttpResponseRedirect(reverse('sport:show-reservation',  kwargs={'customer_pk': deleted_reservation.customer_reserve.id}))
 
 
-def create_field(request):
-    if request.method == 'POST':
-        post_company = Company.objects.get(pk=request.POST['company'])
-        new_field = Field(
-            company=post_company,
-            name=request.POST['name'],
-            status=request.POST['status'],
-            type=request.POST['type'],
-            price=request.POST['price'],
-        )
-        new_field.save()
-        return HttpResponseRedirect(reverse('sport:show-field'))
-    elif request.method == 'GET':
-        template = 'sport/new_field.html'
-        context = {
-            'companies': Company.objects.all(),
-        }
-        return render(request, template, context)
-    return HttpResponse('No se puede guardar')
-
-
-def show_field(request):
-    template = 'sport/show_field.html'
-    list_field = Field.objects.all()
-
-    paginator = Paginator(list_field, 10)
-    try:
-        field_list = list_field
-    except PageNotAnInteger:
-        field_list = list_field
-    except EmptyPage:
-        field_list = list_field
-
-    return render(request, template, {'field_list': field_list}, {'paginator': paginator})
-
-
-def edit_field(request, field_pk):
-    if request.method == 'POST':
-        updated_field = Field.objects.get(pk=field_pk)
-        updated_field.status = request.POST['status']
-        updated_field.type = request.POST['type']
-        updated_field.price = request.POST['price']
-        updated_field.save()
-
-        return HttpResponseRedirect(reverse('sport:show-field'))
-    elif request.method == 'GET':
-        template = 'sport/edit_field.html'
-        context = {
-            'field': Field.objects.get(pk=field_pk)
-        }
-        return render(request, template, context)
-    return HttpResponse('Error: method not allowed.')
-
-
-def delete_field(request, field_pk):
-    deleted_field = Field.objects.get(id=field_pk)
-    deleted_field.delete()
-
-    return HttpResponseRedirect(reverse('sport:show-field'))
-
-
 def profile(request, customer_pk):
     template = 'sport/profile.html'
     context = {

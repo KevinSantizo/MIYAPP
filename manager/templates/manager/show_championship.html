@@ -11,7 +11,7 @@
             <nav id="menu">
                 <ul class="links">
                     <li><a href="{% url 'manager:page-manager' manager_pk %}">Inicio</a></li>
-                    <li><a href="{% url 'manager:new-company' manager_pk %}">Nuevo Centro Deportivo</a></li>
+                    <li><a href="{% url 'manager:new-championship' manager_pk %}">Nuevo Torneo</a></li>
                 </ul>
                 <ul class="actions stacked">
                     <li><a href="{% url 'manager:login' %}" class="button primary fit">Cerrar Sesión</a></li>
@@ -23,7 +23,7 @@
                         <img src="{% static 'images/pic07.jpg' %}" alt="" />
                     </span>
                     <header class="major">
-                        <h1>Centros Deportivos</h1>
+                        <h1>Campeonatos</h1>
                     </header>
                     <div class="content">
 
@@ -46,23 +46,23 @@
 
 						<!-- Two -->
 							<section id="two" class="spotlights">
-                                {% for company in company_list %}
+                                {% for championship in champ %}
 								<section>
-									<a href="generic.html" class="image">
+									<a class="image">
 										<img src="{% static 'images/resultados.jpg' %}" alt="" data-position="center center" />
 									</a>
 									<div class="content">
 										<div class="inner">
 											<header class="major">
-												<h3>{{ company.name }}</h3>
+												<h3>{{ championship.name_championship }}</h3>
 											</header>
-											<p>Ubicada en: <strong>{{ company.address }}</strong>
-                                                <br>Número Telefónico: <strong>{{ company.phone }}</strong>
-                                                <br>Correo Electrónico: <strong>{{ company.email }}</strong>
+											<p>Centro Deportivo: <strong>{{ championship.championship_company.name }}, {{championship.championship_company.address}}</strong>
+                                                <br>Descripción: <strong>{{ championship.description }}</strong>
+                                                <br>Precio de Inscripción: <strong>{{ championship.registration_price }}</strong>
                                             </p>
                                             <ul class="actions">
-												<li><a href="{% url 'manager:edit-company' company.pk %}" class="button">Editar</a></li>
-                                                <li><a href="{% url 'manager:delete-company' company.pk %}" class="button primary fit">Eliminar</a></li>
+												<li><a href="{% url 'manager:edit-championship' championship.pk %}" class="button">Editar</a></li>
+                                                <li><a href="" class="button primary fit">Eliminar</a></li>
 
 											</ul>
 										</div>
@@ -76,13 +76,13 @@
 								<div class="inner">
 									<header class="major">
 
-										<h2>Este es el número de Centros Deportivos hasta ahora:  {{ companies }}</h2>
+										<h2>Campeonatos: {{ championships }}</h2>
 									</header>
-									<p>Los Centros Deportivos que están registrados cuentan con un Estándar de Calidad
-										que son analizados previamente a su registro en la plataforma.
+									<p>
+                                        Campeonatos con Fase de Grupos, eliminatorias directas o de tipo <liga class=""></liga>
 									</p>
 									<ul class="actions">
-										<li><a href="{% url 'manager:show-company' manager_pk %}" class="button next">Regresar</a></li>
+										<li><a href="{% url 'manager:show-championship' manager_pk %}" class="button next">Regresar</a></li>
 									</ul>
 								</div>
 							</section>
